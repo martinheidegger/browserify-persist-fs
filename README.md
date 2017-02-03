@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/martinheidegger/browserify-persist-fs.svg?branch=master)](https://travis-ci.org/martinheidegger/browserify-persist-fs)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![Coverage Status](https://coveralls.io/repos/github/martinheidegger/browserify-persist-fs/badge.svg)](https://coveralls.io/github/martinheidegger/browserify-persist-fs)
 
 `browserify-persist-fs` stores the computation results for every file
 processed in a `cache` folder which makes recomputation of previous executions
