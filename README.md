@@ -1,13 +1,16 @@
 # 🚀 A Browserify Cache for Maximum speed.
 
+[![Build Status](https://travis-ci.org/martinheidegger/browserify-persist-fs.svg?branch=master)](https://travis-ci.org/martinheidegger/browserify-persist-fs)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 `browserify-persist-fs` stores the computation results for every file
 processed in a `cache` folder which makes recomputation of previous executions
 extremely fast _(particularily useful for CI!)_.
 
-Oh❗️ It also comes with a logging API that can help you figure out why
+**Oh**❗️ It also comes with a logging API that can help you figure out why
 your browserify execution is slow and which files cost most time!
 
-> In our production we were able to reduce repeated requests from 40s →　6s
+> In our production we were able to reduce repeated requests from 40s → 6s 🎉
 
 ## Temporary disclaimer
 
@@ -26,7 +29,7 @@ with a browserify version that enables this API.
 Specify `browserify-persist-fs` as `persistentCache` option.
 
 ```javascript
-const browserify = require('browserify')
+const browserify = require('@leichtgewicht/browserify') // for the time being...
 const browserifyPersistFs = require('browserify-persist-fs')(
   '.cache', // The folder where things should be stored
   {},       // "hashObject": And object that is used to figure out if the configuration has changed
