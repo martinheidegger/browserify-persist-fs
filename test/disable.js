@@ -1,6 +1,5 @@
 const test = require('tap').test
 const brfypersist = require('../')
-const fs = require('fs')
 const tmp = require('os-tmpdir')
 
 test('disabling it returns in null', function (t) {

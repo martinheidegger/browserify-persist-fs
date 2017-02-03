@@ -1,8 +1,11 @@
 language: node_js
 node_js:
-  - "stable"
-  - "6"
-  - "5"
-  - "4"
-  - "0.12"
+- stable
+- '6'
+- '5'
+- '4'
+- '0.12'
 sudo: false
+env:
+  global:
+    secure: IlYn41b3Pa58M2AX5A9Te1k3KVkbLWs5uHphub6iu5oOUAWTEqwYdzxdEJ6cyBut5uhCQ+Zdl6Uyr+ESPuj3C46kVhXeCBxh2iB4E3OlSAQpYQIQYOkIYnk2rLd1Vpx7rKFB2GAhLRIPI079LzZ0qqQiTpxfxKmBPx/09m1QDQ3gA9hzNlECCcNHQd1sp6dC/Hb35lq7ybVVLiyJwAq/KHLYAG/fSXZ+kZcVzJhFypwGJUnCF+iusA3E8r0bF9t4f0OSY6iNDy2xq0V5vBkwXwGf9gPTyZ+QcQvED7fmAZVuKskYjbhSH+3Cd2AWPG1Z5qBqdGlTYUeI6f8J4YdwAB5JGylOQiPbTjo44nXbImdUKkaO9n3gzvCthRYJuSSSIKwq/359RFGxbtOJcPni9vvJ9eLb//xORxk9kBlrGGBSKUGgJz3vgTf2b8v86G9FNA1gAakj0YnijULPwD9CSEOa0kIR1nVsjd54Sj5duxjtJAuZgYqxC85YsIDbW4WDckav9vdDfbs3gZaK60HCWQEh11sfDwkY/5OOAyQEBIY6vnilXRAPSH+b1wGlguy8wfi+/pMbQoMBN4yr2tz0JjdVeSEu+IxHCfPxgi9UfN3LCReqCWy4OYkDcM5DomvWD2w+ftlHe/jheefxjN5W1Lj8I7QwmflPzm7nfCOvw7Q=
