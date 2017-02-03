@@ -2,10 +2,11 @@ const tap = require('tap')
 const Promise = require('bluebird')
 const test = tap.test
 const brfypersist = require('../')
-const fs = require('fs')
+const tmp = require('os-tmpdir')
 const path = require('path')
-const tmpSource = fs.mkdtempSync('./.test/log_source_')
-const tmpTarget = fs.mkdtempSync('./.test/log_target_')
+const tmpSource = tmp()
+const tmpTarget = tmp()
+const fs = require('fs')
 
 function createFile (name, data) {
   var file = path.join(tmpSource, name)
