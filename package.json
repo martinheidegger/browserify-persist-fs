@@ -4,9 +4,13 @@
   "description": "Efficient and stable persistent cache for browserify",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run unit",
+    "test": "npm run lint && npm run coverage",
     "lint": "./node_modules/.bin/standard",
-    "unit": "./node_modules/.bin/tap"
+    "unit": "npm run unit:clean && npm run unit:only",
+    "coverage": "npm run unit:clean && npm run unit:coverage",
+    "unit:coverage": "./node_modules/.bin/tap --coverage -- test/*.js",
+    "unit:clean": "rm -rf $(find .test -maxdepth 1 -type d | grep .test/)",
+    "unit:only": "./node_modules/.bin/tap -- test/*.js"
   },
   "keywords": [
     "browserify",
@@ -21,6 +25,7 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "bluebird": "^3.4.7",
     "module-deps": "^4.0.8",
     "standard": "^8.6.0",
     "tap": "^10.0.2"
