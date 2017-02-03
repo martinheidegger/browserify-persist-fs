@@ -1,0 +1,36 @@
+{
+  "name": "browserify-persist-fs",
+  "version": "1.0.0",
+  "description": "Efficient and stable persistent cache for browserify",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "lint": "./node_modules/.bin/standard",
+    "unit": "./node_modules/.bin/tap"
+  },
+  "keywords": [
+    "browserify",
+    "cache",
+    "fs",
+    "persistant",
+    "fast"
+  ],
+  "author": "Martin Heidegger <martin.heidegger@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "module-deps": "^4.0.8",
+    "standard": "^8.6.0",
+    "tap": "^10.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinheidegger/browserify-persist-fs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martinheidegger/browserify-persist-fs/issues"
+  },
+  "homepage": "https://github.com/martinheidegger/browserify-persist-fs#readme"
+}
