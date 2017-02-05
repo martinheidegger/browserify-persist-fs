@@ -4,9 +4,12 @@ const test = tap.test
 const brfypersist = require('../')
 const fs = require('fs')
 const path = require('path')
-const tmp = require('os-tmpdir')
-const tmpSource = tmp()
-const tmpTarget = tmp()
+const tmpDir = require('./util/tmpDir')
+const mkdirp = require('mkdirp')
+const tmpSource = path.join(tmpDir, 'cache_source')
+const tmpTarget = path.join(tmpDir, 'cache_target')
+
+mkdirp.sync(tmpSource)
 
 function createFile (name, data) {
   var file = path.join(tmpSource, name)

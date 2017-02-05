@@ -72,10 +72,27 @@ Make sure that this results in a good idea to ensure developer happiness ☀️ 
 _A [PR](https://github.com/martinheidegger/browserify-persist-fs) to make this
 process better would be highly welcome._
 
-## Persistence of folders
+## Garbage Collection
 
-Usually the folders are not deleted! This means you should occasionally deleted
-the old folders in the cache directory to not run out of disk space.
+`browserify-persist-fs` does not automatically delete old cache files. You will
+run out of disk space if the old files are not regularly deleted.
+
+`browserify-persist-fs` offers an API that allows you to delete old files:
+
+```javascript
+const browserifyPersistFs = require('browserify-persist-fs')('.cache', { /*...*/ })
+browserifyPersistFs.gc({
+  maxAge: 100000, // Age of a file in milliseconds (Default: Number.MAX_SAFE_INTEGER)
+  maxCount: 10000, // Maximum count of files in the cache folder (Default: Number.MAX_SAFE_INTEGER)
+  maxSize: 10000, // Maximum size in bytes that all files accumulatively might have (Default: Number.MAX_SAFE_INTEGER)
+  parallel: 10 // Maximum parallel processes to run (Default: 20)
+}, function (err, deletedFiles) {
+  // deletedFiles holds the path of all files that got deleted
+})
+```
+
+You have to specify at least `maxAge`, `maxCount` or `maxSize`. Any combination
+is possible as well.
 
 ## Logging
 
@@ -96,7 +113,6 @@ function log (entry) {
   entry.sizes.output // Size of the output file
 }
 ```
-
 
 ## License
 

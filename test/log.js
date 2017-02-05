@@ -2,17 +2,10 @@ const tap = require('tap')
 const Promise = require('bluebird')
 const test = tap.test
 const brfypersist = require('../')
-const tmp = require('os-tmpdir')
+const tmpDir = require('./util/tmpDir')
 const path = require('path')
-const tmpSource = tmp()
-const tmpTarget = tmp()
 const fs = require('fs')
-
-function createFile (name, data) {
-  var file = path.join(tmpSource, name)
-  fs.writeFileSync(file, data)
-  return file
-}
+const mkdirp = require('mkdirp')
 
 function throwIfCalled (errorMessage) {
   return function () {
@@ -32,12 +25,20 @@ function processError (source, cb) {
   cb('some-error')
 }
 
-const nonExistent = path.join(tmpSource, 'non_existent.js')
-const fileA = createFile('a.js', 'Hello World')
-const fileB = createFile('b.js', 'Foo')
-const fileC = createFile('c.js', 'Error')
+function testLog (t, tmpSource, persist, log, isLogOnly) {
+  function createFile (name, data) {
+    var file = path.join(tmpSource, name)
+    fs.writeFileSync(file, data)
+    return file
+  }
 
-function testLog (t, persist, log, isLogOnly) {
+  mkdirp.sync(tmpSource)
+
+  const nonExistent = path.join(tmpSource, 'non_existent.js')
+  const fileA = createFile('a.js', 'Hello World')
+  const fileB = createFile('b.js', 'Foo')
+  const fileC = createFile('c.js', 'Error')
+
   return Promise.all([
     persist(nonExistent, null, null, throwIfCalled('Shouldnt try to fallback on non-existent file'))
       .catch(function () {
@@ -101,17 +102,21 @@ function testLog (t, persist, log, isLogOnly) {
 }
 
 test('logging with cache enabled', function (t) {
+  const tmpTarget = path.join(tmpDir, 'log_enabled_target')
+  const tmpSource = path.join(tmpDir, 'log_enabled_source')
   var log = []
   var persist = Promise.promisify(brfypersist(tmpTarget, {}, function (logInfo) {
     log.push(logInfo)
   }, false))
-  return testLog(t, persist, log, false)
+  return testLog(t, tmpSource, persist, log, false)
 })
 
 test('logging with cache disabled', function (t) {
+  const tmpTarget = path.join(tmpDir, 'log_disabled_target')
+  const tmpSource = path.join(tmpDir, 'log_disabled_source')
   var log = []
   var persist = Promise.promisify(brfypersist(tmpTarget, {}, function (logInfo) {
     log.push(logInfo)
   }, true))
-  return testLog(t, persist, log, true)
+  return testLog(t, tmpSource, persist, log, true)
 })
