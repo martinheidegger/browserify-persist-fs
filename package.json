@@ -27,6 +27,7 @@
     "bluebird": "^3.4.7",
     "module-deps": "^4.0.8",
     "os-tmpdir": "^1.0.2",
+    "rimraf": "^2.5.4",
     "standard": "^8.6.0",
     "tap": "^10.0.2"
   },
