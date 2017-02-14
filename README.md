@@ -19,11 +19,8 @@ In order to user `browserify-persist-fs` you need to have a version of browserif
 that depends on [`module-deps`](https://github.com/substack/module-deps) with a
 version >= 4.1.0 installed.
 
-Only after merging [PR#124](https://github.com/substack/module-deps/pull/124)
-`persistentCache` is enabled which makes all this magic possible!
-
-I published [@leichtgewicht/browserify](https://www.npmjs.com/package/@leichtgewicht/browserify)
-with a browserify version that enables this API.
+By installing a clean version of browserify v14.1.0 or newer,
+you will get the required `module-deps` version.
 
 ## Installation & Setup
 
