@@ -111,6 +111,59 @@ function log (entry) {
 }
 ```
 
+## Statistics
+
+Using the above-mentioned Logging capabilities it is possible to generate
+statistics about the project that you are rendering. These statistics can
+give clarity about why builds are slow and if everything worked right.
+
+`browserify-persist-fs` comes with a small statistics module that can generate
+a useful view:
+
+```javascript
+const stats = require('browserify-persist-fs/stats')()
+const browserifyPersistFs = require('browserify-persist-fs')('.cache', {}, stats.update)
+
+// ...
+// After processing and gc:
+
+browserifyPersistFs.gc({/*...*/, function (err, deletedFiles) {
+  console.log(stats.render(err, deletedFiles))
+})
+```
+
+which should show something like:
+
+```
+Avg. duration pre file for reading: 109.9ms
+Avg. duration per file for generating: 1ms
+Files built: 0
+Files with error: 0
+Files cached: 1155
+Garbage collected files: 0
+Slowest files:
+- /Users/martinheidegger/project/client/js/app/components/draw/DrawObjectText.js (total: 257ms, reading: 105.96ms, generating: 1ms)
+- /Users/martinheidegger/project/client/js/app/components/draw/DrawObjectCanvas.js (total: 255.98ms, reading: 106.21ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/rgb2hex/index.js (total: 255.9ms, reading: 126.53ms, generating: 1ms)
+- /Users/martinheidegger/project/client/js/app/components/draw/DrawObjectPen.js (total: 255.73ms, reading: 106.07ms, generating: 1ms)
+- /Users/martinheidegger/project/client/js/app/components/draw/StampTool.js (total: 254.7ms, reading: 105.96ms, generating: 1ms)
+- /Users/martinheidegger/project/client/js/app/components/draw/ToolButtons.js (total: 254.68ms, reading: 106.23ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react-bootstrap/lib/utils/index.js (total: 252.14ms, reading: 129.16ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/jsondiffpatch/src/main.js (total: 247.01ms, reading: 130.37ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactPropTypeLocationNames.js (total: 244.29ms, reading: 101.02ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/checkReactTypeSpec.js (total: 244.31ms, reading: 99.56ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/canDefineProperty.js (total: 244.21ms, reading: 101.09ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/traverseAllChildren.js (total: 244.21ms, reading: 100.87ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactPropTypesSecret.js (total: 243.18ms, reading: 99.58ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/reactProdInvariant.js (total: 242.94ms, reading: 101.01ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/PooledClass.js (total: 243.1ms, reading: 100.84ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactComponentTreeHook.js (total: 243.02ms, reading: 99.56ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactNoopUpdateQueue.js (total: 242.93ms, reading: 99.58ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/getIteratorFn.js (total: 241.89ms, reading: 99.83ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactElementSymbol.js (total: 241.83ms, reading: 98.3ms, generating: 1ms)
+- /Users/martinheidegger/project/node_modules/react/lib/ReactCurrentOwner.js (total: 241.67ms, reading: 98.31ms, generating: 1ms)
+```
+
 ## License
 
 MIT
