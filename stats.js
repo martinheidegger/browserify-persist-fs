@@ -50,10 +50,8 @@ module.exports = function () {
           return '- ' + entry.file + ' (total: ' +
             fmt(entry.durations.total) + 'ms, reading: ' +
             fmt(entry.durations.read) + 'ms, generating: ' +
-            fmt(entry.durations.generate) + 'ms, parallel: ' +
-            entry.parallel + ')'
+            fmt(entry.durations.generate) + 'ms)'
         }).join('\n')
     }
   }
 }
-
