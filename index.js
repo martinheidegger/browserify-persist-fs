@@ -135,7 +135,7 @@ function gc (folder, opts, cb) {
   })
 }
 
-module.exports = function (folder, hash, log, disable) {
+module.exports = function (folder, hash, log, disable, atLeastOnce) {
   if (disable) {
     if (!log) {
       return null
@@ -143,6 +143,7 @@ module.exports = function (folder, hash, log, disable) {
     return disabledLog.bind(null, log)
   }
   const cachePrefix = path.join(folder, createHash(JSON.stringify(hash)))
+  var doneOnce = {}
   require('mkdirp').sync(folder)
   var handler = function (file, id, pkg, fallback, cb) {
     var start = hrtime()
@@ -188,9 +189,10 @@ module.exports = function (folder, hash, log, disable) {
       return readFile(cacheFile, 'utf8', function (_err, rawCacheData) {
         // ignore error
         if (doLog) cacheReadTime = msSince(cacheStart)
-        if (!rawCacheData) {
+        if (!rawCacheData || (atLeastOnce && !doneOnce[cacheFile])) {
           var generateStart = hrtime()
-          return fallback(fileData, function (err, data) {
+          return fallback(doneOnce[cacheFile] ? fileData : null, function (err, data) {
+            doneOnce[cacheFile] = true
             if (doLog) {
               generateTime = msSince(generateStart)
               if (data) {
