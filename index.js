@@ -182,7 +182,7 @@ module.exports = function (folder, hash, log, disable) {
         if (doLog) doLog(err, false)
         return cb(err)
       }
-      var fileHash = createHash(fileData)
+      var fileHash = createHash(file + fileData)
       var cacheStart = hrtime()
       cacheFile = path.join(cachePrefix + '_' + fileHash + '.json')
       return readFile(cacheFile, 'utf8', function (_err, rawCacheData) {
