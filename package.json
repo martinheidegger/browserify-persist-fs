@@ -25,11 +25,11 @@
   },
   "devDependencies": {
     "bluebird": "^3.4.7",
-    "module-deps": "^4.0.8",
+    "module-deps": "^6.0.0",
     "os-tmpdir": "^1.0.2",
     "rimraf": "^2.5.4",
-    "standard": "^8.6.0",
-    "tap": "^10.0.2"
+    "standard": "^10.0.3",
+    "tap": "^11.1.0"
   },
   "repository": {
     "type": "git",

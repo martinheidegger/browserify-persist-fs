@@ -22,7 +22,7 @@ function processFile (source, cb) {
 }
 
 function processError (source, cb) {
-  cb('some-error')
+  cb(new Error('some-error'))
 }
 
 function testLog (t, tmpSource, persist, log, isLogOnly) {
@@ -96,7 +96,7 @@ function testLog (t, tmpSource, persist, log, isLogOnly) {
     t.equals(files[fileB][0].sizes.output, 7)
 
     t.equals(files[fileC].length, 1)
-    t.same(files[fileC][0].err, 'some-error')
+    t.same(files[fileC][0].err.message, 'some-error')
     t.end()
   })
 }
