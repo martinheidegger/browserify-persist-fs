@@ -142,6 +142,7 @@ module.exports = function (folder, hash, log, disable) {
     }
     return disabledLog.bind(null, log)
   }
+  const writeLocks = {}
   const cachePrefix = path.join(folder, createHash(JSON.stringify(hash)))
   require('mkdirp').sync(folder)
   var handler = function (file, id, pkg, fallback, cb) {
@@ -201,9 +202,15 @@ module.exports = function (folder, hash, log, disable) {
             if (err) {
               return cb(err)
             }
-            writeFile(cacheFile, JSON.stringify(data, null, 2), function () {
-              // Don't wait, don't care
-            })
+
+            if (!writeLocks[cacheFile]) {
+              writeLocks[cacheFile] = true
+              writeFile(cacheFile, JSON.stringify(data, null, 2), function () {
+                writeLocks[cacheFile] = undefined
+                // Don't wait, don't care
+              })
+            }
+
             cb(null, data)
           })
         }
