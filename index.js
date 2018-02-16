@@ -201,7 +201,7 @@ module.exports = function (folder, hash, log, disable) {
             if (err) {
               return cb(err)
             }
-            writeFile(cacheFile, JSON.stringify(data, null, 2), function () {
+            writeFile(cacheFile, JSON.stringify(data, null, 2), {flag: 'wx'}, function () {
               // Don't wait, don't care
             })
             cb(null, data)
