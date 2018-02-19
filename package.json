@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm run coverage",
+    "release": "./node_modules/.bin/standard-version",
     "lint": "./node_modules/.bin/standard",
     "unit": "./node_modules/.bin/tap -- test/*.js",
     "coverage": "./node_modules/.bin/tap --coverage -- test/*.js"
@@ -29,6 +30,7 @@
     "os-tmpdir": "^1.0.2",
     "rimraf": "^2.5.4",
     "standard": "^10.0.3",
+    "standard-version": "^4.3.0",
     "tap": "^11.1.0"
   },
   "repository": {
