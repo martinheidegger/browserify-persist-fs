@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/martinheidegger/browserify-persist-fs/compare/v1.2.1...v1.2.2) (2018-02-19)
+
+
+### Bug Fixes
+
+* Preventing parallel file write calls to be executed. ([db747dc](https://github.com/martinheidegger/browserify-persist-fs/commit/db747dc))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/martinheidegger/browserify-persist-fs/compare/v1.2.0...v1.2.1) (2017-02-16)
 
